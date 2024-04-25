@@ -22,7 +22,7 @@
     "produces": [
         "application/json"
     ],
-    "host": "localhost:10000",
+    "host": "proyectoapi-cj3o.onrender.com",
     "basePath": "/api",
     "paths": {
         "/users/": {
