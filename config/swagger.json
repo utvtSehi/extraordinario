@@ -22,7 +22,7 @@
     "produces": [
         "application/json"
     ],
-    "host": "localhost:3005",
+    "host": "localhost:10000",
     "basePath": "/api",
     "paths": {
         "/users/": {
