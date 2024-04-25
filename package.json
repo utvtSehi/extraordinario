@@ -1,0 +1,23 @@
+{
+  "name": "proyecto",
+  "version": "1.0.0",
+  "description": "Proyecto extraordinario",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Homero",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-list-endpoints": "^7.1.0",
+    "faker": "^5.5.3",
+    "mongoose": "^8.3.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.0",
+    "swagger-ui-express": "^5.0.0"
+  }
+}

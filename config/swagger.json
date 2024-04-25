@@ -1,0 +1,484 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Proyecto Extraordinario - APIs",
+        "description": "API del proyecto extraordinario - servidor Express",
+        "version": "1.0"
+    },
+    "tags": [
+        {
+            "name": "Usuarios",
+            "description": "CRUD de usuarios con APIs"
+        },
+        {
+            "name": "Productos",
+            "description": "CRUD de productos con APIs"
+        },
+        {
+            "name": "Carrito",
+            "description": "Operaciones relacionadas con el carrito de compras"
+        }
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "host": "localhost:3005",
+    "basePath": "/api",
+    "paths": {
+        "/users/": {
+            "post": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Crear un nuevo usuario",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Usuario a registrar",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/usuario"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuario creado correctamente"
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Consulta un usuario con su ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario a consultar",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuario encontrado"
+                    },
+                    "404": {
+                        "description": "Usuario no encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Actualiza un usuario con su ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario a actualizar",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Usuario actualizado",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/usuario"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuario actualizado correctamente"
+                    },
+                    "404": {
+                        "description": "Usuario no encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Eliminar un usuario con su ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario a eliminar",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuario eliminado correctamente"
+                    },
+                    "404": {
+                        "description": "Usuario no encontrado"
+                    }
+                }
+            }
+        },
+        "/products/": {
+            "post": {
+                "tags": [
+                    "Productos"
+                ],
+                "summary": "Crear un nuevo producto",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Producto a registrar",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/producto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Producto creado correctamente"
+                    }
+                }
+            }
+        },
+        "/products/{id}": {
+            "get": {
+                "tags": [
+                    "Productos"
+                ],
+                "summary": "Consulta un producto con su ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del producto a consultar",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Producto encontrado"
+                    },
+                    "404": {
+                        "description": "Producto no encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Productos"
+                ],
+                "summary": "Actualiza un producto con su ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del producto a actualizar",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Producto actualizado",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/producto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Producto actualizado correctamente"
+                    },
+                    "404": {
+                        "description": "Producto no encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Productos"
+                ],
+                "summary": "Eliminar un producto con su ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del producto a eliminar",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Producto eliminado correctamente"
+                    },
+                    "404": {
+                        "description": "Producto no encontrado"
+                    }
+                }
+            }
+        },
+        "/cart/user/{id}": {
+            "get": {
+                "tags": [
+                    "Carrito"
+                ],
+                "summary": "Obtener el carrito de un usuario",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Carrito obtenido correctamente",
+                        "schema": {
+                            "$ref": "#/definitions/Carrito"
+                        }
+                    },
+                    "404": {
+                        "description": "Usuario no encontrado"
+                    }
+                }
+            }
+        },
+        "/cart/user/{id}/add": {
+            "post": {
+                "tags": [
+                    "Carrito"
+                ],
+                "summary": "Agregar un producto al carrito de un usuario",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "ID del producto y cantidad a agregar",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "productoId": {
+                                    "type": "string",
+                                    "description": "ID del producto"
+                                },
+                                "cantidad": {
+                                    "type": "integer",
+                                    "description": "Cantidad del producto a agregar"
+                                }
+                            },
+                            "required": [
+                                "productoId",
+                                "cantidad"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Producto agregado al carrito correctamente"
+                    },
+                    "404": {
+                        "description": "Usuario no encontrado"
+                    }
+                }
+            }
+        },
+        "/cart/user/{id}/remove": {
+            "post": {
+                "tags": [
+                    "Carrito"
+                ],
+                "summary": "Eliminar un producto del carrito de un usuario",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "ID del producto y cantidad a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "productoId": {
+                                    "type": "string",
+                                    "description": "ID del producto"
+                                },
+                                "cantidad": {
+                                    "type": "integer",
+                                    "description": "Cantidad del producto a eliminar"
+                                }
+                            },
+                            "required": [
+                                "productoId",
+                                "cantidad"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Producto eliminado del carrito correctamente"
+                    },
+                    "404": {
+                        "description": "Usuario no encontrado"
+                    }
+                }
+            }
+        },
+        "/cart/user/{id}/clear": {
+            "post": {
+                "tags": [
+                    "Carrito"
+                ],
+                "summary": "Vaciar el carrito de un usuario",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Carrito vaciado correctamente",
+                        "schema": {
+                            "$ref": "#/definitions/Carrito"
+                        }
+                    },
+                    "404": {
+                        "description": "Usuario no encontrado"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "usuario": {
+            "type": "object",
+            "properties": {
+                "correo": {
+                    "type": "string",
+                    "description": "Correo electrónico"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Contraseña"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre"
+                },
+                "apellidos": {
+                    "type": "string",
+                    "description": "Apellidos"
+                },
+                "genero": {
+                    "type": "string",
+                    "description": "Género"
+                }
+            },
+            "required": [
+                "correo",
+                "password",
+                "nombre",
+                "apellidos",
+                "genero"
+            ]
+        },
+        "producto": {
+            "type": "object",
+            "properties": {
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del producto"
+                },
+                "descripcion": {
+                    "type": "string",
+                    "description": "Descripción del producto"
+                },
+                "precio": {
+                    "type": "integer",
+                    "description": "Precio del producto"
+                },
+                "stock": {
+                    "type": "integer",
+                    "description": "Stock disponible del producto"
+                }
+            },
+            "required": [
+                "nombre",
+                "descripcion",
+                "precio",
+                "stock"
+            ]
+        },
+        "Carrito": {
+            "type": "object",
+            "properties": {
+                "usuario": {
+                    "type": "string",
+                    "description": "ID del usuario"
+                },
+                "productos": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "productoId": {
+                                "type": "string",
+                                "description": "ID del producto"
+                            },
+                            "cantidad": {
+                                "type": "integer",
+                                "description": "Cantidad del producto en el carrito"
+                            }
+                        },
+                        "required": [
+                            "productoId",
+                            "cantidad"
+                        ]
+                    },
+                    "description": "Productos en el carrito"
+                }
+            },
+            "required": [
+                "usuario",
+                "productos"
+            ]
+        }
+    }
+}
