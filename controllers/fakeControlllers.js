@@ -1,6 +1,7 @@
 const Product = require('../models/productsModel');
 const User = require('../models/usersModel');
 const Carrito = require('../models/cartsModel');
+const bcrypt = require('bcrypt');
 const faker = require('faker');
 
 exports.generarUsuarios = async (req, res) => {
@@ -8,9 +9,11 @@ exports.generarUsuarios = async (req, res) => {
 
             const usuarios = [];
             for (let i = 0; i < 50; i++) {
+                const ClaveSinHash = faker.internet.password();
+                const hashedPassword = await bcrypt.hash(ClaveSinHash, 10);
                 const fakeUser = new User({
                     correo: faker.internet.email(),
-                    password: faker.internet.password(),
+                    password: hashedPassword,
                     nombre: faker.name.firstName(),
                     apellidos: faker.name.lastName(),
                     genero: faker.random.arrayElement(['Masculino', 'Femenino', 'Otros']),
@@ -26,7 +29,7 @@ exports.generarUsuarios = async (req, res) => {
                     continue; 
                 }
 
-                usuarios.push(fakeUser);
+                usuarios.push({ usuario: NuevoUsuario, ClaveSinHash });
             }
 
             res.json(usuarios);

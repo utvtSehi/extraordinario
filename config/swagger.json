@@ -25,6 +25,30 @@
     "host": "proyectoapi-cj3o.onrender.com",
     "basePath": "/api",
     "paths": {
+        "/users/login": {
+            "post": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Autenticación de usuario",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Inicio de sesión de un usuario en el sistema.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/login"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuario creado correctamente"
+                    }
+                }
+            }
+        },
         "/users/": {
             "post": {
                 "tags": [
@@ -417,6 +441,23 @@
                 "nombre",
                 "apellidos",
                 "genero"
+            ]
+        },
+        "login": {
+            "type": "object",
+            "properties": {
+                "correo": {
+                    "type": "string",
+                    "description": "Correo electrónico"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Contraseña"
+                }
+            },
+            "required": [
+                "correo",
+                "password"
             ]
         },
         "producto": {
